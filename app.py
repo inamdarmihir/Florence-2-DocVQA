@@ -17,21 +17,21 @@ import subprocess
 subprocess.run('pip install flash-attn --no-build-isolation', env={'FLASH_ATTENTION_SKIP_CUDA_BUILD': "TRUE"}, shell=True)
 
 models = {
-    'microsoft/Florence-2-large-ft': AutoModelForCausalLM.from_pretrained('microsoft/Florence-2-large-ft', trust_remote_code=True).to("cuda").eval(),
-    'microsoft/Florence-2-large': AutoModelForCausalLM.from_pretrained('microsoft/Florence-2-large', trust_remote_code=True).to("cuda").eval(),
-    'microsoft/Florence-2-base-ft': AutoModelForCausalLM.from_pretrained('microsoft/Florence-2-base-ft', trust_remote_code=True).to("cuda").eval(),
-    'microsoft/Florence-2-base': AutoModelForCausalLM.from_pretrained('microsoft/Florence-2-base', trust_remote_code=True).to("cuda").eval(),
+    'mihirinamdar/Florence-2-FT-DocVQA': AutoModelForCausalLM.from_pretrained('mihirinamdar/Florence-2-FT-DocVQA', trust_remote_code=True).to("cuda").eval(),
+    'mihirinamdar/Florence-2-FT-DocVQA': AutoModelForCausalLM.from_pretrained('mihirinamdar/Florence-2-FT-DocVQA', trust_remote_code=True).to("cuda").eval(),
+    'mihirinamdar/Florence-2-FT-DocVQA': AutoModelForCausalLM.from_pretrained('mihirinamdar/Florence-2-FT-DocVQA', trust_remote_code=True).to("cuda").eval(),
+    'mihirinamdar/Florence-2-FT-DocVQA': AutoModelForCausalLM.from_pretrained('mihirinamdar/Florence-2-FT-DocVQA', trust_remote_code=True).to("cuda").eval(),
 }
 
 processors = {
-    'microsoft/Florence-2-large-ft': AutoProcessor.from_pretrained('microsoft/Florence-2-large-ft', trust_remote_code=True),
-    'microsoft/Florence-2-large': AutoProcessor.from_pretrained('microsoft/Florence-2-large', trust_remote_code=True),
-    'microsoft/Florence-2-base-ft': AutoProcessor.from_pretrained('microsoft/Florence-2-base-ft', trust_remote_code=True),
-    'microsoft/Florence-2-base': AutoProcessor.from_pretrained('microsoft/Florence-2-base', trust_remote_code=True),
+    'mihirinamdar/Florence-2-FT-DocVQA': AutoProcessor.from_pretrained('mihirinamdar/Florence-2-FT-DocVQA', trust_remote_code=True),
+    'mihirinamdar/Florence-2-FT-DocVQA': AutoProcessor.from_pretrained('mihirinamdar/Florence-2-FT-DocVQA', trust_remote_code=True),
+    'mihirinamdar/Florence-2-FT-DocVQA': AutoProcessor.from_pretrained('mihirinamdar/Florence-2-FT-DocVQA', trust_remote_code=True),
+    'mihirinamdar/Florence-2-FT-DocVQA': AutoProcessor.from_pretrained('mihirinamdar/Florence-2-FT-DocVQA', trust_remote_code=True),
 }
 
 
-DESCRIPTION = "# [Florence-2 Demo](https://huggingface.co/microsoft/Florence-2-large)"
+DESCRIPTION = "# [Florence-2 Demo](mihirinamdar/Florence-2-FT-DocVQA)"
 
 colormap = ['blue','orange','green','purple','brown','pink','gray','olive','cyan','red',
             'lime','indigo','violet','aqua','magenta','coral','gold','tan','skyblue']
@@ -121,7 +121,7 @@ def draw_ocr_bboxes(image, prediction):
                   fill=color)
     return image
 
-def process_image(image, task_prompt, text_input=None, model_id='microsoft/Florence-2-large'):
+def process_image(image, task_prompt, text_input=None, model_id='mihirinamdar/Florence-2-FT-DocVQA'):
     image = Image.fromarray(image)  # Convert NumPy array to PIL Image
     if task_prompt == 'Caption':
         task_prompt = '<CAPTION>'
@@ -257,7 +257,7 @@ with gr.Blocks(css=css) as demo:
         with gr.Row():
             with gr.Column():
                 input_img = gr.Image(label="Input Picture")
-                model_selector = gr.Dropdown(choices=list(models.keys()), label="Model", value='microsoft/Florence-2-large')
+                model_selector = gr.Dropdown(choices=list(models.keys()), label="Model", value='mihirinamdar/Florence-2-FT-DocVQA')
                 task_type = gr.Radio(choices=['Single task', 'Cascased task'], label='Task type selector', value='Single task')
                 task_prompt = gr.Dropdown(choices=single_task_list, label="Task Prompt", value="Caption")
                 task_type.change(fn=update_task_dropdown, inputs=task_type, outputs=task_prompt)
